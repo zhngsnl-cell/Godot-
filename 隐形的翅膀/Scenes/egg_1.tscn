@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c27jorkm1uorq"]
+
+[ext_resource type="Texture2D" uid="uid://qr568mt7ahm0" path="res://Assets/egg.png" id="1_suqnr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bkx4"]
+size = Vector2(16, 16)
+
+[node name="egg1" type="Area2D" unique_id=108839138]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=629121821]
+texture = ExtResource("1_suqnr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=892340346]
+shape = SubResource("RectangleShape2D_3bkx4")

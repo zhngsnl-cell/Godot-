@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://icwen6y3104m"]
+
+[ext_resource type="Script" uid="uid://bu5lw7gpewoaf" path="res://Scripts/egg.gd" id="1_250tq"]
+[ext_resource type="Texture2D" uid="uid://qr568mt7ahm0" path="res://Assets/egg.png" id="1_ah11i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqfqy"]
+size = Vector2(16, 16)
+
+[node name="egg0" type="Area2D" unique_id=1673207654]
+script = ExtResource("1_250tq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=280878666]
+texture = ExtResource("1_ah11i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=681609969]
+shape = SubResource("RectangleShape2D_dqfqy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

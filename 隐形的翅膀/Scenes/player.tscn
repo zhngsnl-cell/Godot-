@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bqra81psyp5mg"]
+
+[ext_resource type="Script" uid="uid://esqafgumpdsj" path="res://Scripts/player.gd" id="1_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://c2bd03xfr3u0m" path="res://Assets/player_fly.png" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dft0v0x66q74w" path="res://Assets/player_idle.png" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://5fjbr5ntoure" path="res://Scripts/StateMachine.gd" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://cmiwg1qdn87ir" path="res://Scripts/StateIdle.gd" id="5_x3wgy"]
+[ext_resource type="Script" uid="uid://svykdtikliou" path="res://Scripts/StateWalk.gd" id="6_3smsa"]
+[ext_resource type="Script" uid="uid://bwduhtfjkmhgv" path="res://Scripts/StateFly.gd" id="7_3smsa"]
+[ext_resource type="Script" uid="uid://clee0u2736xbg" path="res://Scripts/StateJump.gd" id="8_8erm5"]
+[ext_resource type="Script" uid="uid://cwr1bmag78vo6" path="res://Scripts/StateFall.gd" id="9_f1ek2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6t5aa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cvnsp")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v0iea")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="player" type="CharacterBody2D" unique_id=958713331 groups=["player"]]
+script = ExtResource("1_6t5aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=583878071]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1013651706]
+sprite_frames = SubResource("SpriteFrames_6t5aa")
+animation = &"fly"
+
+[node name="StateMachine" type="Node" parent="." unique_id=566583073]
+script = ExtResource("4_fkybt")
+metadata/_custom_type_script = "uid://5fjbr5ntoure"
+
+[node name="walk" type="Node" parent="StateMachine" unique_id=480914309 node_paths=PackedStringArray("character", "animated_sprite_2d")]
+script = ExtResource("6_3smsa")
+character = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="idle" type="Node" parent="StateMachine" unique_id=1260823106 node_paths=PackedStringArray("character", "animated_sprite_2d")]
+script = ExtResource("5_x3wgy")
+character = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="fly" type="Node" parent="StateMachine" unique_id=1457123641 node_paths=PackedStringArray("character", "animated_sprite_2d")]
+script = ExtResource("7_3smsa")
+character = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="jump" type="Node" parent="StateMachine" unique_id=890682313 node_paths=PackedStringArray("character", "animated_sprite_2d")]
+script = ExtResource("8_8erm5")
+character = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="fall" type="Node" parent="StateMachine" unique_id=662681934]
+script = ExtResource("9_f1ek2")

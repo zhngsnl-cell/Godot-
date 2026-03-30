@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://70m7hoanm2hr"]
+
+[ext_resource type="Texture2D" uid="uid://bhd0qldxsw4m3" path="res://Assets/grass_block.png" id="1_kedv7"]
+[ext_resource type="Texture2D" uid="uid://c87xy8ku0lvua" path="res://Assets/tile1.png" id="2_i4say"]
+[ext_resource type="PackedScene" uid="uid://mr8n846sha25" path="res://Scenes/danger_block.tscn" id="3_alt3h"]
+[ext_resource type="PackedScene" uid="uid://icwen6y3104m" path="res://TileMap/egg.tscn" id="4_qta07"]
+[ext_resource type="PackedScene" uid="uid://bqra81psyp5mg" path="res://Scenes/player.tscn" id="5_g3g0w"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4say"]
+texture = ExtResource("1_kedv7")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_alt3h"]
+texture = ExtResource("2_i4say")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qta07"]
+resource_name = "scene_collection"
+scenes/1/scene = ExtResource("3_alt3h")
+scenes/2/scene = ExtResource("4_qta07")
+scenes/3/scene = ExtResource("5_g3g0w")
+
+[sub_resource type="TileSet" id="TileSet_alt3h"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_i4say")
+sources/1 = SubResource("TileSetAtlasSource_alt3h")
+sources/2 = SubResource("TileSetScenesCollectionSource_qta07")
+
+[node name="TileMapLayer" type="TileMapLayer" unique_id=150192910]
+tile_set = SubResource("TileSet_alt3h")
